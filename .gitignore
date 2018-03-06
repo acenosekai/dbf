@@ -11,3 +11,4 @@ build
 /.nb-gradle/private/
 
 .idea
+/.nb-gradle/
