@@ -111,6 +111,27 @@ public final class DbfProcessor {
             throw new DbfException("Cannot write .dbf file to .txt", e);
         }
     }
+    
+    public List<HeaderObject> buildHeaders(File dbf){
+        try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(dbf)))) {
+            DbfHeader header = DbfHeader.read(in);
+            List<HeaderObject> lho = new ArrayList<>();
+            for (int i = 0; i < header.getFieldsCount(); i++) {
+                DbfField field = header.getField(i);
+                HeaderObject ho = new HeaderObject();
+                ho.setIndex(i);
+                ho.setName(field.getName());
+                ho.setType(String.valueOf(field.getDataType().byteValue));
+                ho.setLength(field.getFieldLength());
+                ho.setDecimal(field.getDecimalCount());
+                
+            }
+
+            return lho;
+        } catch (IOException e) {
+            throw new DbfException("Cannot read header of .dbf file " + dbf, e);
+        }
+    }
 
     /**
      * Create string with dbf information:
