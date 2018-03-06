@@ -124,7 +124,7 @@ public final class DbfProcessor {
                 ho.setType(String.valueOf(field.getDataType().byteValue));
                 ho.setLength(field.getFieldLength());
                 ho.setDecimal(field.getDecimalCount());
-                
+                lho.add(ho);
             }
 
             return lho;
