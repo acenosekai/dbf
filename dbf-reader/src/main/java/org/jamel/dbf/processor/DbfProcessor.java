@@ -112,7 +112,7 @@ public final class DbfProcessor {
         }
     }
     
-    public List<HeaderObject> buildHeaders(File dbf){
+    public static List<HeaderObject> buildHeaders(File dbf){
         try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(dbf)))) {
             DbfHeader header = DbfHeader.read(in);
             List<HeaderObject> lho = new ArrayList<>();
